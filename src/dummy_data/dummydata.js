@@ -1,14 +1,17 @@
-var dummydata = [{
+export default [{
 'Aromantic': "TRUE",
 'Asexual': "FALSE",
 'Bisexual': "TRUE",
-"Book Title or ↵Title of First in the Series": "Warrior",
+"Title": "Warrior",
 'Format': "Anthology",
 'Gay': "TRUE",
 'Genderqueer or Non-binary': "TRUE",
 'Genre': "F/SF",
 'Goodreads URL': "https'://www.goodreads.com/book/show/33080942-warrior",
 'ISBN': "9781912159000",
+'series': '',
+'author': 'Antonica Jones',
+'authorURL': "https'://www.goodreads.com/book/show/33080942-warrior",
 'Intersex': "TRUE",
 'Later in Series': "FALSE",
 'Lesbian': "TRUE",
@@ -17,7 +20,7 @@ var dummydata = [{
 'Minor Characters': "TRUE",
 'Multiple Characters': "TRUE",
 'Trans': "TRUE",
-'imageUrl': "https'://images.gr-assets.com/books/1479836667l/33080942.jpg",
+'imageURL': "https://images.gr-assets.com/books/1479836667l/33080942.jpg",
 'longDescription': "A werewolf fighting for her humanity.<br />A gladiator fighting for love.<br />A blind mage, a human sacrifice and a big, buff fairy, all fighting off demons to save the world.<br /><br />Twelve writers. Twelve worlds. Twelve warriors.<br /><br />WARRIOR is an anthology of twelve exciting science-fiction and fantasy short stories, bursting with unstoppable characters that happen to identify within the LGBTQIA spectrum.",
 'shortDescription': "A werewolf fighting for her humanity.<br />A gladiator fighting for love.<br />A blind mage, a human sacrifice and a big, buff fairy, all fighting off demons to save the world.<br /><br />Twelve writers. Twelve worlds. Twelve warriors.<br /><br />WARRIOR is an anthology of twelve exciting science-fiction and fantasy short stories, bursting with unstoppable characters that happen to identify within the LGBTQI",
 }]
