@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from "jquery";
 
 export default class BookPage extends React.Component {
     state = {}
@@ -9,18 +10,19 @@ export default class BookPage extends React.Component {
 
     getBookDetails(){
         const {ISBN} = this.props.match.params;
-        $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(`https://www.goodreads.com/book/isbn/${ISBN}`) + '&callback=?', function(data){
-            this.scrapeWebData()
-        });
+        $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(`https://www.goodreads.com/book/isbn/${ISBN}`) + '&callback=?', this.scrapeWebData);
     }
 
-    scrapeWebData(){
+    scrapeWebData=(resp)=>{
+        const data = resp.contents;
         const imageURL = data.match(/id="coverImage"[\w\W]*(http.*\.jpg)[\w\W]*class="bookCoverActions">/)[1]
-        const bookInfo = data.match(/id="bookTitle[\w\W]*itemprop="name">\n(.*)\n[\w\W]*>\n(.*)\n<\/a><\/h2>[\w\W]*href="(.*)"><span itemprop="name">(.*)<\/span><\/a>[\w\W]*class="authorName__container/);
-        const title = bookInfo[1].trim();
-        const series = bookInfo[2].trim();
-        const authorURL = bookInfo[3];
-        const author = bookInfo[4];
+        //const bookInfo = data.match(/id="bookTitle[\w\W]*itemprop="name">\n(.*)\n[\w\W]*>\n(.*)\n<\/a><\/h2>[\w\W]*href="(.*)"><span itemprop="name">(.*)<\/span><\/a>[\w\W]*class="authorName__container/);
+        let title = data.match(/id="bookTitle[\w\W]*itemprop="name">\n(.*)\n[\w\W]*<h2 id="bookSeries">/)[1]
+        title = title.trim();
+        let series = data.match(/id="bookSeries">[\w\W]+\n(.*)\n<\/a><\/h2>/)[1]
+        series = series.trim();
+        const authorURL = data.match(/itemprop="url" href=(.*)><span itemprop="name">/)[1];
+        const author = data.match(/<span itemprop="name">(\w*\s\w*)/)[1];
         const bookDescription = data.match(/id="description"[\w\W]*freeTextContainer[\d]*">(.*)<\/span>[\w\W]*style="display:none">(.*)<\/span>[\w\W]*buyButtonContainer/);
         const shortDescription = bookDescription[1];
         const longDescription = bookDescription[2];
