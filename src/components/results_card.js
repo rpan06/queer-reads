@@ -3,7 +3,9 @@ import dummydata from '../dummy_data/dummydata'
 
 export default class ResultsCard extends React.Component {
     render(){
-        const {Title,series,author,imageUrl,shortDescription} = this.props.item
+        let {Title,series,author,imageURL,shortDescription} = this.props.item
+        //shortDescription = shortDescription.replace(/<br \/>/g, " ");
+        //todo: insert as html
         console.log(imageURL)
         return (
             <div className="card horizontal brown lighten-5">

@@ -11,6 +11,7 @@ const App = () => (
     <div>
         <Switch>
             <Route exact path="/" component={LandingPage}/>
+            <Route exact path="/search" component={ResultsPage}/>
             {/* <Route path="/add-item" component={AddItem}/> */}
             <Route path="/book/:ISBN" component={BookPage}/>
             <Route component={NotFound}/>

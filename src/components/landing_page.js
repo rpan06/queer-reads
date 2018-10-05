@@ -2,16 +2,32 @@ import React from 'react';
 import logo from '../assets/images/landing-page-logo.png'
 
 export default class LandingPage extends React.Component {
+    state = {
+        value: ''
+    }
+    handleChange = (event) => {
+        this.setState({
+            value: event.target.value
+        })
+    }
+    handleSubmit = (event) => {
+        console.log("handleSubmit: ",event)
+        event.preventDefault();
+        //collect all of the checked box values
+        //history push to results page
+        //propogate results page function
+    }
     render(){
         return(
             <div className="center container">
                     <div className="row">
                         <img className="col s12 m6 offset-m3" src={logo}/>
                     </div>
-                    <form className="col s12" action="">
+                    <form onSubmit={this.handleSubmit} className="col s12" action="">
                         <div className="row">
                             <div className="input-field col s12 m6 offset-m3">
-                                    <input type="text" className="validate"/>
+                                    <input type="text" id="search-input" className="validate" />
+                                    {/* value={this.state.value} onChange={this.handleChange} */}
                                     <label htmlFor="search-input">Search</label>
                             </div>
                         </div>
@@ -44,40 +60,40 @@ export default class LandingPage extends React.Component {
                                     <p>Contains character(s) that are:</p>
                                     <div className="row">
                                         <label>
-                                                <input type="checkbox" className="filled-in" name="" value=""/>
+                                                <input type="checkbox" className="filled-in" name="gay" value="gay"/>
                                                 <span>Gay</span>
                                         </label>
                                         <label>
-                                                <input type="checkbox" name="" value=""/>
+                                                <input type="checkbox" name="lesbian" value="lesbian"/>
                                                 <span>Lesbian</span>
                                         </label>
                                         <label>
-                                                <input type="checkbox" name="" value=""/>
+                                                <input type="checkbox" name="bisexual" value="bisexual"/>
                                                 <span>Bisexual</span>
                                         </label>
                                     </div>
                                     <div className="row">
                                         <label>
-                                                <input type="checkbox" name="" value=""/>
+                                                <input type="checkbox" name="trans" value="trans"/>
                                                 <span>Trans</span>
                                         </label>
                                         <label>
-                                                <input type="checkbox" name="" value=""/>
+                                                <input type="checkbox" name="nonbinary" value="nonbinary"/>
                                                 <span>Genderqueer/Non-binary</span>
                                         </label>
                                     </div>
                                     <div className="row">
                                         <label>
-                                                <input type="checkbox" name="" value=""/>
+                                                <input type="checkbox" name="intersex" value="intersex"/>
                                                 <span>Intersex</span>
                                         </label>
                                         <label>
-                                                <input type="checkbox" name="" value=""/>
+                                                <input type="checkbox" name="asexual" value="asexual"/>
                                                 <span>Asexual</span>
                                         </label>
                                         <label>
-                                                <input type="checkbox" name="" value=""/>
-                                                <span>Aromatic</span>
+                                                <input type="checkbox" name="aromantic" value="aromantic"/>
+                                                <span>Aromantic</span>
                                         </label>
                                     </div>
                                 </div>
@@ -85,21 +101,21 @@ export default class LandingPage extends React.Component {
                                     <p>LGBTQ+ character(s) are:</p>
                                     <div className="row">
                                         <label>
-                                                <input type="checkbox" name="" value=""/>
+                                                <input type="checkbox" name="main" value="main"/>
                                                 <span>Main Character</span>
                                         </label>
                                         <label>
-                                                <input type="checkbox" name="" value=""/>
+                                                <input type="checkbox" name="later" value="later"/>
                                                 <span>Later in Series</span>
                                         </label>
                                     </div>
                                     <div className="row">
                                         <label>
-                                                <input type="checkbox" name="" value=""/>
+                                                <input type="checkbox" name="major" value="major"/>
                                                 <span>Major Characters</span>
                                         </label>
                                         <label>
-                                                <input type="checkbox" name="" value=""/>
+                                                <input type="checkbox" name="minor" value="minor"/>
                                                 <span>Minor Characters</span>
                                         </label>
                                     </div>

@@ -60,7 +60,7 @@ export default class BookPage extends React.Component {
                         <h4>{series}</h4>
                         <h4>by {author}</h4>
                         <br/>
-                        <p>{longDescription}</p>
+                        <p dangerouslySetInnerHTML={{__html: longDescription}}/>
                     </div>
                 </div>
             </div>
