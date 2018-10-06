@@ -7,6 +7,9 @@ export default class BookPage extends React.Component {
     componentDidMount(){
         this.getBookDetails();
     }
+    componentWillUnmount(){
+        //clear state
+    }
 
     getBookDetails(){
         const {ISBN} = this.props.match.params;

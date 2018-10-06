@@ -15,6 +15,7 @@
     "url": "https://github.com/Learning-Fuze/react_starter.git"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "jquery": "^3.3.1",
     "materialize": "^1.0.0",
