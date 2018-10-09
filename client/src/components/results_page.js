@@ -111,7 +111,7 @@ export default class LandingPage extends React.Component {
                                 </p>
                         </div>
                     </div>
-                <ResultsList/>
+                <ResultsList {...this.props}/>
             </div>
 
         )

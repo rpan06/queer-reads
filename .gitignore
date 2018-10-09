@@ -1,3 +1,6 @@
-.idea
-.DS_Store
-node_modules
+node_modules/
+config.js
+.ida
+.vscode
+.atom
+.DS_store
