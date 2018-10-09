@@ -1,12 +1,9 @@
 import React from 'react';
-import dummydata from '../dummy_data/dummydata'
+import {Link} from 'react-router-dom';
 
 export default class ResultsCard extends React.Component {
     render(){
-        let {Title,series,author,imageURL,shortDescription} = this.props.item
-        //shortDescription = shortDescription.replace(/<br \/>/g, " ");
-        //todo: insert as html
-        console.log(imageURL)
+        let {title,author,imageURL,shortDescription,ISBN} = this.props.item
         return (
             <div className="card horizontal brown lighten-5">
                 <div className="card-image">
@@ -14,9 +11,9 @@ export default class ResultsCard extends React.Component {
                 </div>
                 <div className="card-stacked">
                     <div className="card-content">
-                        <h5>{Title} {series}</h5>
+                        <Link to={`/book/${ISBN}`}>{title}</Link>
                         <p>by {author}</p><br/>
-                        <p>{shortDescription}</p>
+                        <p dangerouslySetInnerHTML={{__html: shortDescription}}/>
                     </div>
                 </div>
             </div>

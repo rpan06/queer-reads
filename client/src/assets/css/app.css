@@ -32,6 +32,12 @@ html, body{
     width: auto;
 }
 
+.card a {
+    color: black;
+    font-size: 1.5em;
+}
+
+
 #bookpage img {
     height: 50vh;
 }

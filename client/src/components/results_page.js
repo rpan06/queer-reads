@@ -25,10 +25,10 @@ export default class LandingPage extends React.Component {
                                         <input type="radio" name="search-radio" value=""/>
                                         <span>author</span>
                                 </label>
-                                <label>
+                                {/* <label>
                                         <input type="radio" name="search-radio" value=""/>
                                         <span>genre</span>
-                                </label>
+                                </label> */}
                             </div>
                             <button className="btn" id="search-submit">Find Books!</button>
                         </form>
@@ -111,7 +111,7 @@ export default class LandingPage extends React.Component {
                                 </p>
                         </div>
                     </div>
-                <ResultsList/>
+                <ResultsList {...this.props}/>
             </div>
 
         )
