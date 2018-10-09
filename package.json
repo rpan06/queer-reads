@@ -10,7 +10,7 @@
     "dev:server": "nodemon index.js",
     "dev:client": "npm start --prefix client"
   },
-  "author": "",
+  "author": "Rachel Pan",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",

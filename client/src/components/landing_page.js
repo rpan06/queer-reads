@@ -45,10 +45,10 @@ export default class LandingPage extends React.Component {
                                         <input type="radio" name="search-radio" value=""/>
                                         <span>author</span>
                                 </label>
-                                <label>
+                                {/* <label>
                                         <input type="radio" name="search-radio" value=""/>
                                         <span>genre</span>
-                                </label>
+                                </label> */}
                             </div>
                         </div>
                         <button className="btn">Find Books!</button>

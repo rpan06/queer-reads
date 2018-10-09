@@ -6,9 +6,9 @@ class BookPage extends React.Component {
     componentDidMount(){
         this.props.getSingleItem(this.props.match.params.ISBN);
     }
-    componentWillUnmount(){
-        this.props.clearSingleItem();
-    }
+    // componentWillUnmount(){
+    //     this.props.clearSingleItem();
+    // }
     convertToBinaryAndThenCharacters(num){
         const characterArray = ['Gay', 'Lesbian', 'Bisexual', 'Trans', 'Non-binary', 'Intersex', 'Asexual', 'Aromantic', 'Multiple Characters', 'Main Characters', 'Major Characters', 'Minor Characters', 'Later in Series']
         let binary = num.toString(2).split("")
@@ -21,8 +21,11 @@ class BookPage extends React.Component {
         return output
     }
     render(){
-        // console.log("Bookpage Props: ", this.props.item)
-        const {imageURL, title, series, author, longDescription, characterPresence} = this.props.item;
+        if(typeof this.props.item.data === 'undefined'){
+            return <h1>LOADING</h1>
+        }
+        // console.log("Bookpage Props: ", this.props.item.data)
+        const {imageURL, title, series, author, longDescription, characterPresence} = this.props.item.data[0];
         const arrayOfCharacters = this.convertToBinaryAndThenCharacters(parseInt(characterPresence))
         const containsList = arrayOfCharacters.map((item,index)=><p key={index}>{item}</p>)
         return(
@@ -34,7 +37,7 @@ class BookPage extends React.Component {
                     <div id="book-information" className="col s3 center">
                         <img src={imageURL}/>
                         <h4>Rating</h4>
-                        <p>4.65 stars</p>
+                        <p>Coming Soon</p>
 
                         <h4>Contains</h4>
                         {containsList}

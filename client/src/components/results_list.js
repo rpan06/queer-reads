@@ -8,8 +8,12 @@ class List extends React.Component {
         this.props.getResultsData(this.props.match.params.filter);
     }
     render(){
+        if(typeof this.props.results.data === 'undefined'){
+            return <h1>LOADING</h1>
+        }
         // console.log("Results List Props: ", this.props)
-        let list = this.props.results.map((item, index)=>{
+        let results = this.props.results.data
+        let list = results.map((item, index)=>{
             return <ResultsCard key={index} item={item}/>
         })
         return (

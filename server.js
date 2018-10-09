@@ -5,7 +5,7 @@ const mysql = require('mysql');
 const credentials = require('./config.js');
 const gsjson = require('google-spreadsheet-to-json');
 const axios = require('axios');
-const PORT = 9000
+const PORT = process.env.PORT || 9000;
 const app = express();
 
 app.use(cors());
@@ -67,7 +67,7 @@ function escapeApostrophes(obj){
 // let inserts = fieldInserts.concat(valueInserts);
 // sql = mysql.format(sql, inserts);
 
-app.get('/book/:ISBN', (req,res) => {
+app.get('/api/book/:ISBN', (req,res) => {
     let sql = `SELECT * FROM books WHERE ISBN = ${req.params.ISBN}`;
     let query = db.query(sql, (err, results) => {
         if(err) throw err;
@@ -77,7 +77,8 @@ app.get('/book/:ISBN', (req,res) => {
 })
 
 //TODO: @closeness := 0; SELECT name, author, @closeness:=characterPresence&userFilter FROM books WHERE @closeness > 0 ORDER BY @closeness DESC
-app.get('/search/:filter', (req,res) => {
+app.get('/api/search/:filter', (req,res) => {
+    console.log("API SHITT", req.params)
     let sql = `SELECT * FROM books WHERE characterPresence & ${req.params.filter} = ${req.params.filter}`;
     let query = db.query(sql, (err, results) => {
         if(err) throw err;
