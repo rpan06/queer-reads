@@ -33,12 +33,12 @@ db.connect((err) => {
 app.get('/add-data', async (req,res)=> {
     const resultsArray = await getSpreadsheetsData();
 
-    let sql = "INSERT INTO `books` (`ID`, `title`, `characterPresence`, `author`, `shortDescription`, `longDescription`, `ISBN`, `imageURL`) VALUES";
+    let sql = "INSERT INTO `books` (`ID`, `title`, `series`, `characterPresence`, `author`, `shortDescription`, `longDescription`, `ISBN`, `imageURL`) VALUES";
 
     for (let i = 0; i<resultsArray.length; i++){
         escapeApostrophes(resultsArray[i])
-        let { ID, title, characterPresence, author, shortDescription, longDescription, ISBN, imageURL } = resultsArray[i];
-        let newValues = ` (${ID}, '${title}', ${characterPresence}, '${author}', '${shortDescription}', '${longDescription}', '${ISBN}', '${imageURL}'),`;
+        let { ID, title, series, characterPresence, author, shortDescription, longDescription, ISBN, imageURL } = resultsArray[i];
+        let newValues = ` (${ID}, '${title}', '${series}', ${characterPresence}, '${author}', '${shortDescription}', '${longDescription}', '${ISBN}', '${imageURL}'),`;
         if (i === resultsArray.length - 1){
             newValues = newValues.slice(0,newValues.length-1)
         }
@@ -139,9 +139,10 @@ async function separateArrayResults(resultsArray){
 async function createBookObject(arrayInformation){
     let book = {
         ID: generateID(),
-        title: arrayInformation[1],
-        characterPresence: getCharPresence(arrayInformation.splice(5,17)),
-        author: arrayInformation[2],
+        title: arrayInformation[2],
+        series: arrayInformation[1],
+        characterPresence: getCharPresence(arrayInformation.splice(6,18)),
+        author: arrayInformation[3],
         shortDescription: null,
         longDescription: null,
         ISBN: arrayInformation[0],
