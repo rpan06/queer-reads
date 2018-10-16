@@ -15,7 +15,7 @@ export default props => {
     return (
         <div style={container}>
             <div style={content}>
-                <h1>404 PAGE NOT FOUND REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</h1>
+                <h1>404 PAGE NOT FOUND</h1>
                 <p>Invalid route</p>
                 <Link to="/">Back To Home</Link>
             </div>
