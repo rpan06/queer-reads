@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../assets/images/landing-page-logo.png'
 import Checkbox from './checkbox'
 import RadioButtons from './radioButtons'
+import convertSearchToBitwise from '../helper/convertSearchToBitwise'
 
 export default class LandingPage extends React.Component {
     state = {
@@ -32,33 +33,8 @@ export default class LandingPage extends React.Component {
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        let searchCharPresence = this.convertSearchToBitwise(this.state)
+        let searchCharPresence = convertSearchToBitwise(this.state)
         this.props.history.push(`/search/${searchCharPresence}`);
-    }
-
-    convertSearchToBitwise(obj){
-        let charLookUp = {
-            gay: 1,
-            lesbian: 2,
-            bisexual: 4,
-            trans: 8,
-            nonbinary: 16,
-            intersex: 32,
-            asexual: 64,
-            aromantic: 128,
-            multiple: 256,
-            main: 512,
-            major: 1024,
-            minor: 2048,
-            later: 4096
-        }
-        let output = 0;
-        for (let key in obj){
-          if (obj[key] && charLookUp[key]){
-            output += charLookUp[key]
-          }
-        }
-        return output;
     }
 
     render(){
@@ -77,16 +53,15 @@ export default class LandingPage extends React.Component {
                                         name="search"
                                         className="validate"
                                         value={this.state.search}
-                                        onChange={this.handleChange}/>
-                                    <label className="active" htmlFor="search-input">Search</label>
+                                        onChange={this.handleChange}
+                                        placeholder="Search"/>
+                                    {/* <label className="active" htmlFor="search-input">Search</label> */}
                             </div>
                         </div>
                         <div className="row">
-                            <div>
-                                <RadioButtons value="all" handleChange={this.handleChange}/>
-                                <RadioButtons value="title" handleChange={this.handleChange}/>
-                                <RadioButtons value="author" handleChange={this.handleChange}/>
-                            </div>
+                            <RadioButtons value="all" handleChange={this.handleChange}/>
+                            <RadioButtons value="title" handleChange={this.handleChange}/>
+                            <RadioButtons value="author" handleChange={this.handleChange}/>
                         </div>
                         <button className="btn">Find Books!</button>
                     </form>

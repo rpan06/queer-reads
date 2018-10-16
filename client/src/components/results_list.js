@@ -7,6 +7,9 @@ class List extends React.Component {
     componentDidMount(){
         this.props.getResultsData(this.props.match.params.filter);
     }
+    componentDidUpdate(){
+        this.props.getResultsData(this.props.match.params.filter);
+    }
     render(){
         if(typeof this.props.results.data === 'undefined'){
             return <h1>LOADING</h1>
