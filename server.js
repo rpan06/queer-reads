@@ -44,11 +44,11 @@ app.get('/add-data', async (req,res)=> {
         }
         sql += newValues
     }
-    // console.log(sql)
+    console.log(sql)
     let query = db.query(sql, (err,result) => {
         if(err) throw err;
         console.log(result);
-        res.send('Data added...')
+        res.send(result)
     })
 })
 
@@ -181,8 +181,11 @@ function scrapeWebData(data){
         longDescription: null,
         imageURL: null
     }
-    filteredData.imageURL = data.match(/id="coverImage"[\w\W]*(http.*\.jpg)[\w\W]*class="bookCoverActions">/)[1]
+    // console.log(data)
+    filteredData.imageURL = data.match(/id="coverImage"[\w\W]*(http.*\.jpg).*\n.*\n.*class="bookCoverActions">/)[1]
+    console.log(filteredData.imageURL)
     const bookDescription = data.match(/id="description"[\w\W]*freeTextContainer[\d]*">(.*)<\/span>[\w\W]*style="display:none">(.*)<\/span>[\w\W]*buyButtonContainer/);
+    // console.log('Book Description: ', bookDescription)
     filteredData.shortDescription = bookDescription[1].replace(/<br \/>/g, " ");
     filteredData.longDescription = bookDescription[2];
     return filteredData

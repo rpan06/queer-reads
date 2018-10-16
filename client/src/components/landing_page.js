@@ -1,23 +1,68 @@
 import React from 'react';
 import logo from '../assets/images/landing-page-logo.png'
+import Checkbox from './checkbox'
+import RadioButtons from './radioButtons'
 
 export default class LandingPage extends React.Component {
     state = {
-        value: ''
+        search: '',
+        searchType: '',
+        gay: false,
+        lesbian: false,
+        bisexual: false,
+        trans: false,
+        nonbinary: false,
+        intersex: false,
+        asexual: false,
+        aromantic: false,
+        main: false,
+        multiple: false,
+        major: false,
+        minor: false,
+        later: false
     }
     handleChange = (event) => {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
         this.setState({
-            value: event.target.value
+            [name]: value
         })
     }
     handleSubmit = (event) => {
-        console.log("handleSubmit: ",event)
         event.preventDefault();
-        //collect all of the checked box values
-        //history push to results page
-        //propogate results page function
+        let searchCharPresence = this.convertSearchToBitwise(this.state)
+        this.props.history.push(`/search/${searchCharPresence}`);
     }
+
+    convertSearchToBitwise(obj){
+        let charLookUp = {
+            gay: 1,
+            lesbian: 2,
+            bisexual: 4,
+            trans: 8,
+            nonbinary: 16,
+            intersex: 32,
+            asexual: 64,
+            aromantic: 128,
+            multiple: 256,
+            main: 512,
+            major: 1024,
+            minor: 2048,
+            later: 4096
+        }
+        let output = 0;
+        for (let key in obj){
+          if (obj[key] && charLookUp[key]){
+            output += charLookUp[key]
+          }
+        }
+        return output;
+    }
+
     render(){
+        console.log('Landing Page State: ', this.state)
         return(
             <div className="center container">
                     <div className="row">
@@ -26,29 +71,21 @@ export default class LandingPage extends React.Component {
                     <form onSubmit={this.handleSubmit} className="col s12" action="">
                         <div className="row">
                             <div className="input-field col s12 m6 offset-m3">
-                                    <input type="text" id="search-input" className="validate" />
-                                    {/* value={this.state.value} onChange={this.handleChange} */}
-                                    <label htmlFor="search-input">Search</label>
+                                    <input
+                                        type="text"
+                                        id="search-input"
+                                        name="search"
+                                        className="validate"
+                                        value={this.state.search}
+                                        onChange={this.handleChange}/>
+                                    <label className="active" htmlFor="search-input">Search</label>
                             </div>
                         </div>
                         <div className="row">
                             <div>
-                                <label>
-                                    <input type="radio" name="search-radio" value=""/>
-                                    <span>all</span>
-                                </label>
-                                <label>
-                                        <input type="radio" name="search-radio" value=""/>
-                                        <span>title</span>
-                                </label>
-                                <label>
-                                        <input type="radio" name="search-radio" value=""/>
-                                        <span>author</span>
-                                </label>
-                                {/* <label>
-                                        <input type="radio" name="search-radio" value=""/>
-                                        <span>genre</span>
-                                </label> */}
+                                <RadioButtons value="all" handleChange={this.handleChange}/>
+                                <RadioButtons value="title" handleChange={this.handleChange}/>
+                                <RadioButtons value="author" handleChange={this.handleChange}/>
                             </div>
                         </div>
                         <button className="btn">Find Books!</button>
@@ -59,65 +96,32 @@ export default class LandingPage extends React.Component {
                                 <div>
                                     <p>Contains character(s) that are:</p>
                                     <div className="row">
-                                        <label>
-                                                <input type="checkbox" className="filled-in" name="gay" value="gay"/>
-                                                <span>Gay</span>
-                                        </label>
-                                        <label>
-                                                <input type="checkbox" name="lesbian" value="lesbian"/>
-                                                <span>Lesbian</span>
-                                        </label>
-                                        <label>
-                                                <input type="checkbox" name="bisexual" value="bisexual"/>
-                                                <span>Bisexual</span>
-                                        </label>
+                                       <Checkbox name="gay" text="Gay" handleChange={this.handleChange}/>
+                                       <Checkbox name="lesbian" text="Lesbian" handleChange={this.handleChange}/>
+                                       <Checkbox hname="bisexual" text="Bisexual" handleChange={this.handleChange}/>
                                     </div>
                                     <div className="row">
-                                        <label>
-                                                <input type="checkbox" name="trans" value="trans"/>
-                                                <span>Trans</span>
-                                        </label>
-                                        <label>
-                                                <input type="checkbox" name="nonbinary" value="nonbinary"/>
-                                                <span>Genderqueer/Non-binary</span>
-                                        </label>
+                                        <Checkbox name="trans" text="Trans" handleChange={this.handleChange}/>
+                                        <Checkbox name="nonbinary" text="Genderqueer/Non-binary" handleChange={this.handleChange}/>
                                     </div>
                                     <div className="row">
-                                        <label>
-                                                <input type="checkbox" name="intersex" value="intersex"/>
-                                                <span>Intersex</span>
-                                        </label>
-                                        <label>
-                                                <input type="checkbox" name="asexual" value="asexual"/>
-                                                <span>Asexual</span>
-                                        </label>
-                                        <label>
-                                                <input type="checkbox" name="aromantic" value="aromantic"/>
-                                                <span>Aromantic</span>
-                                        </label>
+                                        <Checkbox name="intesex" text="Intersex" handleChange={this.handleChange}/>
+                                        <Checkbox name="asexual" text="Asexual" handleChange={this.handleChange}/>
+                                        <Checkbox name="aromantic" text="Aromantic" handleChange={this.handleChange}/>
                                     </div>
                                 </div>
                                 <div>
                                     <p>LGBTQ+ character(s) are:</p>
                                     <div className="row">
-                                        <label>
-                                                <input type="checkbox" name="main" value="main"/>
-                                                <span>Main Character</span>
-                                        </label>
-                                        <label>
-                                                <input type="checkbox" name="later" value="later"/>
-                                                <span>Later in Series</span>
-                                        </label>
+                                        <Checkbox name="main" text="Main Character" handleChange={this.handleChange}/>
+                                        <Checkbox name="multiple" text="Multiple Characters" handleChange={this.handleChange}/>
                                     </div>
                                     <div className="row">
-                                        <label>
-                                                <input type="checkbox" name="major" value="major"/>
-                                                <span>Major Characters</span>
-                                        </label>
-                                        <label>
-                                                <input type="checkbox" name="minor" value="minor"/>
-                                                <span>Minor Characters</span>
-                                        </label>
+                                        <Checkbox name="major" text="Major Characters" handleChange={this.handleChange}/>
+                                        <Checkbox name="minor" text="Minor Characters" handleChange={this.handleChange}/>
+                                    </div>
+                                    <div className="row">
+                                        <Checkbox name="later" text="Later in Series" handleChange={this.handleChange}/>
                                     </div>
                                 </div>
                             </div>

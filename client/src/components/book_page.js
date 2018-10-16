@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {getSingleItem, clearSingleItem} from '../actions'
 
@@ -31,7 +32,7 @@ class BookPage extends React.Component {
         return(
             <div id="bookpage" className="container">
                 <div className="row">
-                    <button className="btn right">New Search</button>
+                    <Link className="btn right" to="/">New Search</Link>
                 </div>
                 <div className="row">
                     <div id="book-information" className="col s3 center">
