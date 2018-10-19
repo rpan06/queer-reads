@@ -45,7 +45,7 @@ export default class LandingPage extends React.Component {
     }
 
     render(){
-        console.log('Landing Page State: ', this.state)
+        // console.log('Landing Page State: ', this.state)
         return(
             <div className="center container">
                     <div className="row">

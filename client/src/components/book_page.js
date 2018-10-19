@@ -25,8 +25,8 @@ class BookPage extends React.Component {
         if(typeof this.props.item.data === 'undefined'){
             return <h1>LOADING</h1>
         }
-        // console.log("Bookpage Props: ", this.props)
-        const {ISBN, imageURL, title, series, author, longDescription, characterPresence} = this.props.item.data[0];
+        console.log("Bookpage Props: ", this.props)
+        const {ISBN, imageURL, title, series, author, rating, format, genre, longDescription, characterPresence} = this.props.item.data[0];
         const arrayOfCharacters = this.convertToBinaryAndThenCharacters(parseInt(characterPresence))
         const containsList = arrayOfCharacters.map((item,index)=><p key={index}>{item}</p>)
         return(
@@ -40,15 +40,19 @@ class BookPage extends React.Component {
                     <div id="book-information" className="col s3 center">
                         <img src={imageURL}/>
                         <a href={`https://www.goodreads.com/book/isbn/${ISBN}`}>Link to Goodreads</a>
-                        {/* <h4>Rating</h4>
-                        <p>Coming Soon</p> */}
+                        <h4>Rating</h4>
+                        {rating}
+                        <h4>Format</h4>
+                        {format}
+                        <h4>Genre</h4>
+                        {genre}
                         <h4>Contains</h4>
                         {containsList}
                     </div>
 
                     <div className="col s9">
-                        <h4>{title}</h4>
-                        <h4>{series}</h4>
+                        <h3>{title}</h3>
+                        {series === '-' ? '' : <h4>{series}</h4>}
                         <h4>by {author}</h4>
                         <br/>
                         <p dangerouslySetInnerHTML={{__html: longDescription}}/>
