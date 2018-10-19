@@ -40,7 +40,7 @@ export default class LandingPage extends React.Component {
             search = '0'
         }
         if(searchType === ''){
-            searchType = '0'
+            searchType = 'all'
         }
         this.props.history.push(`/search/${searchCharPresence}/${searchType}/${search}`);
     }

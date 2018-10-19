@@ -26,7 +26,7 @@ class List extends React.Component {
         }
         text = text.toLowerCase();
         let filteredData;
-        if(type === '0' || type === 'all'){
+        if(type === 'all'){
             filteredData = data.filter(item => item.title.toLowerCase().includes(text) || item.author.toLowerCase().includes(text))
         } else { //for type = author/title options
             filteredData = data.filter(item => item[type].toLowerCase().includes(text))
