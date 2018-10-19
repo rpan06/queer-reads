@@ -1,14 +1,16 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1671
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 ArialMT;\f2\froman\fcharset0 Times-Roman;
+\f3\fswiss\fcharset0 Arial-BoldMT;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
 \margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 TODO:\
 \
-Server: how to get dev.queerreads.org to checkout to dev\
-Connecting website server to database\
+Bugs: ASIN isbn pages aren\'92t loading\
+\
+Set up a second database and user for dev info\
 \
 CSS to mobile view, responsiveness\
 \
@@ -26,6 +28,66 @@ About me page (credit /r/fantasy and users), contact email to update information
 Edit database genre (change the H to history for example)\
 updating database search\
 \
+\
+REMEMBER: \
+Need to rebundle and pull git every time changes to client\
+Need to restart pm2 every time you make changes to server\
+\
+Sudo pm2 list\
+Sudo pm2 restart prod-queer\
+Sudo pm2\
+Dev-queer\
+\
+\pard\pardeftab720\sl340\partightenfactor0
+
+\f1\fs29\fsmilli14667 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ssh -i ~/rachel_pan_portfolio_aws_server.pem ubuntu@54.203.48.225
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs29\fsmilli14667 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 sudo cp config.default.js config.js
+\f2\fs24 \
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs29\fsmilli14667 \cf2 sudo service apache2 restart
+\f2\fs24 \
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs29\fsmilli14667 \cf2 const credentials = \{
+\f2\fs24 \
+
+\f1\fs29\fsmilli14667  \'a0\'a0\'a0host \'a0\'a0\'a0\'a0: 
+\f3\b 'localhost'
+\f1\b0 ,
+\f2\fs24 \
+
+\f1\fs29\fsmilli14667  \'a0\'a0\'a0user \'a0\'a0\'a0\'a0: 
+\f3\b 'queerreads'
+\f1\b0 ,
+\f2\fs24 \
+
+\f1\fs29\fsmilli14667  \'a0\'a0\'a0password : 
+\f3\b 'gay books yo'
+\f1\b0 ,
+\f2\fs24 \
+
+\f1\fs29\fsmilli14667  \'a0\'a0\'a0database : 
+\f3\b 'queer_reads'
+\f2\b0\fs24 \
+
+\f1\fs29\fsmilli14667 \}
+\f2\fs24 \
+
+\f1\fs29\fsmilli14667 module.exports = credentials;
+\f2\fs24 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
 \
 \
 Queer reads data:\
