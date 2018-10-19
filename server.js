@@ -33,12 +33,12 @@ db.connect((err) => {
 app.get('/add-data', async (req,res)=> {
     const resultsArray = await getSpreadsheetsData();
 
-    let sql = "INSERT INTO `books` (`ID`, `title`, `series`, `characterPresence`, `author`, `shortDescription`, `longDescription`, `ISBN`, `imageURL`) VALUES";
+    let sql = "INSERT INTO `books` (`ISBN`, `ID`, `title`, `series`, `characterPresence`, `author`, `rating`, `genre`, `format`,`shortDescription`, `longDescription`, `imageURL`) VALUES";
 
     for (let i = 0; i<resultsArray.length; i++){
         escapeApostrophes(resultsArray[i])
-        let { ID, title, series, characterPresence, author, shortDescription, longDescription, ISBN, imageURL } = resultsArray[i];
-        let newValues = ` (${ID}, '${title}', '${series}', ${characterPresence}, '${author}', '${shortDescription}', '${longDescription}', '${ISBN}', '${imageURL}'),`;
+        let { ID, title, series, characterPresence, author, rating, genre, format, shortDescription, longDescription, ISBN, imageURL } = resultsArray[i];
+        let newValues = ` ('${ISBN}', ${ID}, '${title}', '${series}', ${characterPresence}, '${author}', '${rating}', '${genre}', '${format}', '${shortDescription}', '${longDescription}', '${imageURL}'),`;
         if (i === resultsArray.length - 1){
             newValues = newValues.slice(0,newValues.length-1)
         }
@@ -46,8 +46,8 @@ app.get('/add-data', async (req,res)=> {
     }
     console.log(sql)
     let query = db.query(sql, (err,result) => {
-        if(err) throw err;
-        console.log(result);
+        if(err) console.log(err);
+        // console.log(result);
         res.send(result)
     })
 })
@@ -61,11 +61,7 @@ function escapeApostrophes(obj){
 }
 
 
-// let sql = "INSERT INTO ?? (??, ??, ??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-// let fieldInserts = [`books`,`ID`, `title`, `characterPresence`, `author`, `shortDescription`, `longDescription`, `ISBN`, `imageURL`];
-// let valueInserts = [ID, title, characterPresence, author, shortDescription, longDescription, ISBN, imageURL];
-// let inserts = fieldInserts.concat(valueInserts);
-// sql = mysql.format(sql, inserts);
+
 
 app.get('/api/book/:ISBN', (req,res) => {
     let sql = `SELECT * FROM books WHERE ISBN = ${req.params.ISBN}`;
@@ -116,7 +112,6 @@ function getSpreadsheetsData(){
         listOnly: true,
     })
     .then(function(result) {
-        // console.log(result.length);
         // console.log(result);
         return separateArrayResults(result)
     })
@@ -138,15 +133,18 @@ async function separateArrayResults(resultsArray){
 
 async function createBookObject(arrayInformation){
     let book = {
+        ISBN: arrayInformation[0],
         ID: generateID(),
         title: arrayInformation[2],
         series: arrayInformation[1],
         characterPresence: getCharPresence(arrayInformation.splice(6,18)),
         author: arrayInformation[3],
+        genre: arrayInformation[4],
+        format: arrayInformation[5],
         shortDescription: null,
         longDescription: null,
-        ISBN: arrayInformation[0],
-        imageURL: null
+        imageURL: null,
+        rating: null
     }
     let filteredData = await goodreadsAxiosCall(book.ISBN);
     book = {...book, ...filteredData}
@@ -171,23 +169,47 @@ function getCharPresence(characterArray) {
 
 async function goodreadsAxiosCall(isbn){
     const response = await axios.get(`https://www.goodreads.com/book/isbn/${isbn}`)
-    return scrapeWebData(response.data)
+    return scrapeWebData(response.data, isbn)
 
 }
 
-function scrapeWebData(data){
+function scrapeWebData(data, isbn){
     let filteredData = {
         shortDescription: null,
         longDescription: null,
-        imageURL: null
+        imageURL: null,
+        rating: null
     }
     // console.log(data)
-    filteredData.imageURL = data.match(/id="coverImage"[\w\W]*(http.*\.jpg).*\n.*\n.*class="bookCoverActions">/)[1]
-    console.log(filteredData.imageURL)
-    const bookDescription = data.match(/id="description"[\w\W]*freeTextContainer[\d]*">(.*)<\/span>[\w\W]*style="display:none">(.*)<\/span>[\w\W]*buyButtonContainer/);
-    // console.log('Book Description: ', bookDescription)
-    filteredData.shortDescription = bookDescription[1].replace(/<br \/>/g, " ");
-    filteredData.longDescription = bookDescription[2];
+    let imageURL = data.match(/id="coverImage"[\w\W]*(http.*\.jpg).*\n.*\n.*class="bookCoverActions">/)
+    if(!imageURL){
+        console.log('IMAGEURL ERROR! *********************', isbn, '************************************')
+        filteredData.imageURL = '';
+    } else {
+        filteredData.imageURL = imageURL[1]
+    }
+
+    let rating = data.match(/itemprop="ratingValue">(\d.\d*)[\n\w\W]*id="rating_details"/)
+    if(!rating){
+        console.log('RATING ERROR! *********************', isbn, '************************************')
+        filteredData.rating = "No Rating";
+    } else {
+        filteredData.rating = rating[1]
+    }
+
+    let doubleBookDescription = data.match(/id="description"[\w\W]*freeTextContainer[\d]*">(.*)<\/span>[\w\W]*style="display:none">(.*)<\/span>[\w\W]*buyButtonContainer/);
+    let singleBookDescription = data.match(/id="description"[\w\W]*freeTextContainer[\d]*">(.*)<\/span>[\w\W\n]*buyButtonContainer/)
+    if (!doubleBookDescription && !singleBookDescription){
+        console.log('BOOK DESCRIPTION ERROR! *********************', isbn, '************************************')
+        filteredData.shortDescription = "No description avaliable.";
+        filteredData.longDescription = "No description avaliable.";
+    } else if (!doubleBookDescription){
+        filteredData.shortDescription = singleBookDescription[1].replace(/<br \/>/g, " ");
+        filteredData.longDescription = singleBookDescription[1];
+    } else {
+        filteredData.shortDescription = doubleBookDescription[1].replace(/<br \/>/g, " ");
+        filteredData.longDescription = doubleBookDescription[2];
+    }
     return filteredData
 }
 

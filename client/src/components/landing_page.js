@@ -34,7 +34,14 @@ export default class LandingPage extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         let searchCharPresence = convertSearchToBitwise(this.state)
-        this.props.history.push(`/search/${searchCharPresence}`);
+        let {search, searchType} = this.state
+        if(search === ''){
+            search = '0'
+        }
+        if(searchType === ''){
+            searchType = '0'
+        }
+        this.props.history.push(`/search/${searchCharPresence}/${searchType}/${search}`);
     }
 
     render(){

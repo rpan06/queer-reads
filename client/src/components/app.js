@@ -11,7 +11,7 @@ const App = () => (
     <div>
         <Switch>
             <Route exact path="/" component={LandingPage}/>
-            <Route exact path="/search/:filter" component={ResultsPage}/>
+            <Route exact path="/search/:filter/:type/:text" component={ResultsPage}/>
             <Route path="/book/:ISBN" component={BookPage}/>
             <Route component={NotFound}/>
         </Switch>
