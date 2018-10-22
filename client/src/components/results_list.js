@@ -35,7 +35,11 @@ class List extends React.Component {
     }
     render(){
         if(typeof this.props.results.data === 'undefined'){
-            return <h1>LOADING</h1>
+            return(
+                <div className="loading-container">
+                    <span className="loading-spinner"></span>
+                </div>
+            )
         }
         console.log("Results List Props: ", this.props)
         let results = this.filterData(this.props.results.data)
@@ -43,7 +47,7 @@ class List extends React.Component {
             return <ResultsCard key={index} item={item}/>
         })
         return (
-            <div className="col s9">
+            <div className="col m9">
                 {list}
             </div>
         )

@@ -11,16 +11,26 @@ html, body{
     margin:1vh
 }
 
-#advanced-options {
-    padding: 5px;
+#advanced-options{
+    padding: 1rem 1rem 10rem 1rem;
 }
 
 #advanced-options label {
-    padding-right: 50px;
+    padding-bottom: 1rem;
+}
+
+#advanced-options span, #slide-bar span{
+    white-space: nowrap;
+    padding-left: 2rem;
+    display: inline;
 }
 
 #searchpage-container {
     margin: 0;
+}
+
+#slide-out{
+    height: 100vh;
 }
 
 .card {
