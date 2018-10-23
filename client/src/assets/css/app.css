@@ -11,16 +11,26 @@ html, body{
     margin:1vh
 }
 
-#advanced-options {
-    padding: 5px;
+#advanced-options{
+    padding: 1rem 1rem 10rem 1rem;
 }
 
 #advanced-options label {
-    padding-right: 50px;
+    padding-bottom: 1rem;
+}
+
+#advanced-options span, #slide-bar span{
+    white-space: nowrap;
+    padding-left: 2rem;
+    display: inline;
 }
 
 #searchpage-container {
     margin: 0;
+}
+
+.results-search{
+    height: 100vh;
 }
 
 .card {
@@ -28,7 +38,7 @@ html, body{
 }
 
 .card, .card-image img{
-    height: 40vh;
+    height: 30vh;
     width: auto;
 }
 
@@ -37,12 +47,76 @@ html, body{
     font-size: 1.5em;
 }
 
-#bookpage img {
-    height: 50vh;
-}
-
-#book-information img {
+.book-information img {
     width: 100%;
     height: auto
-    
 }
+
+
+/* From Carlos Moreira on codepen.io */
+.loading-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+.loading-spinner {
+    border: 5px solid #4CAF50;
+    border-top: 5px solid transparent;
+    display: block;
+    padding: 15px;
+    border-radius: 25px;
+    -webkit-animation: rotation 1s linear infinite;
+            animation: rotation 1s linear infinite;
+  }
+
+  @-webkit-keyframes rotation {
+    0% {
+      border-color: #F44336;
+      border-top-color: transparent;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+    }
+    25% {
+      border-color: #4CAF50;
+      border-top-color: transparent;
+    }
+    50% {
+      border-color: #2196F3;
+      border-top-color: transparent;
+    }
+    100% {
+      border-color: #F44336;
+      border-top-color: transparent;
+      -webkit-transform: rotate(359deg);
+              transform: rotate(359deg);
+    }
+  }
+
+  @keyframes rotation {
+    0% {
+      border-color: #F44336;
+      border-top-color: transparent;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+    }
+    25% {
+      border-color: #4CAF50;
+      border-top-color: transparent;
+    }
+    50% {
+      border-color: #2196F3;
+      border-top-color: transparent;
+    }
+    100% {
+      border-color: #F44336;
+      border-top-color: transparent;
+      -webkit-transform: rotate(359deg);
+              transform: rotate(359deg);
+    }
+  }

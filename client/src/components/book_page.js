@@ -1,10 +1,17 @@
 import React from 'react';
+import BookPageInfoModal from './book_page_info_modal'
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {getSingleItem, clearSingleItem} from '../actions'
+import Sidenav from './sidenav'
+
+import ResultsSearch from './results_search';
+
 
 class BookPage extends React.Component {
     componentDidMount(){
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
         this.props.getSingleItem(this.props.match.params.ISBN);
     }
     componentWillUnmount(){
@@ -23,7 +30,11 @@ class BookPage extends React.Component {
     }
     render(){
         if(typeof this.props.item.data === 'undefined'){
-            return <h1>LOADING</h1>
+            return(
+                <div className="loading-container">
+                    <span className="loading-spinner"></span>
+                </div>
+            )
         }
         console.log("Bookpage Props: ", this.props)
         const {ISBN, imageURL, title, series, author, rating, format, genre, longDescription, characterPresence} = this.props.item.data[0];
@@ -33,11 +44,19 @@ class BookPage extends React.Component {
             <div id="bookpage" className="container">
                 <div className="row">
                     <button className="btn left" onClick={()=>{this.props.history.goBack()}}>Back to Results</button>
-                    {/* <Link className="btn left" to="/">Back To Results</Link> */}
                     <Link className="btn right" to="/">New Search</Link>
+                    {/* <button data-target="slide-out" className="sidenav-trigger btn right">New Search</button>
+                    <Sidenav history={this.props.history}/> */}
                 </div>
+
+                {/* <ResultsSearch classes="sidenav col s8" history={this.props.history}/> */}
+                <div className="book-information col s12 center hide-on-med-and-up show-on-small">
+                    <img src={imageURL}/>
+                    <BookPageInfoModal {...this.props.item.data[0]} containsList={containsList}/>
+                </div>
+
                 <div className="row">
-                    <div id="book-information" className="col s3 center">
+                    <div className="book-information col l3 center hide-on-small-only show-on-medium-and-up">
                         <img src={imageURL}/>
                         <a href={`https://www.goodreads.com/book/isbn/${ISBN}`}>Link to Goodreads</a>
                         <h4>Rating</h4>
@@ -50,7 +69,7 @@ class BookPage extends React.Component {
                         {containsList}
                     </div>
 
-                    <div className="col s9">
+                    <div className="col l9 s12">
                         <h3>{title}</h3>
                         {series === '-' ? '' : <h4>{series}</h4>}
                         <h4>by {author}</h4>

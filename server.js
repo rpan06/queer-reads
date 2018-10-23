@@ -64,7 +64,7 @@ function escapeApostrophes(obj){
 
 
 app.get('/api/book/:ISBN', (req,res) => {
-    let sql = `SELECT * FROM books WHERE ISBN = ${req.params.ISBN}`;
+    let sql = `SELECT * FROM books WHERE ISBN = '${req.params.ISBN}'`;
     let query = db.query(sql, (err, results) => {
         if(err) throw err;
         console.log(results);
