@@ -44,9 +44,9 @@ class BookPage extends React.Component {
             <div id="bookpage" className="container">
                 <div className="row">
                     <button className="btn left" onClick={()=>{this.props.history.goBack()}}>Back to Results</button>
-                    {/* <Link className="btn right" to="/">New Search</Link> */}
-                    <button data-target="slide-out" className="sidenav-trigger btn right">New Search</button>
-                    <Sidenav history={this.props.history}/>
+                    <Link className="btn right" to="/">New Search</Link>
+                    {/* <button data-target="slide-out" className="sidenav-trigger btn right">New Search</button>
+                    <Sidenav history={this.props.history}/> */}
                 </div>
 
                 {/* <ResultsSearch classes="sidenav col s8" history={this.props.history}/> */}
