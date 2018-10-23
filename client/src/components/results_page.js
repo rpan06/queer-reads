@@ -1,6 +1,7 @@
 import React from 'react';
 import ResultsList from './results_list';
 import ResultsSearch from './results_search';
+import Sidenav from './sidenav'
 export default class LandingPage extends React.Component {
 
     componentDidMount(){
@@ -13,10 +14,10 @@ export default class LandingPage extends React.Component {
         return(
             <div id="searchpage-container" className="row">
                 <div className="row left hide-on-med-and-up show-on-small">
-                    <button data-target="slide-out" className="sidenav-trigger btn">Edit Search</button>
+                    <a href="#" data-target="slide-out" className="sidenav-trigger btn">New Search</a>
                 </div>
-                <ResultsSearch classes="col l3 hide-on-small-only show-on-medium-and-up" history={this.props.history}/>
-                <ResultsSearch classes="sidenav col s8" history={this.props.history}/>
+                <ResultsSearch classes="col m3 hide-on-small-only show-on-medium-and-up" history={this.props.history}/>
+                <Sidenav history={this.props.history}/>
                 <ResultsList {...this.props}/>
             </div>
 

@@ -6,7 +6,6 @@ export default class BookPageInfoModal extends React.Component {
         var instances = M.Modal.init(elems);
     }
     render(){
-        console.log('stuff', this.props)
         const {ISBN, rating, format, genre, containsList} = this.props;
         return(
             <div>

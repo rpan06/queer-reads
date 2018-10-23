@@ -46,9 +46,10 @@ class List extends React.Component {
         let list = results.map((item, index)=>{
             return <ResultsCard key={index} item={item}/>
         })
+        console.log(list)
         return (
-            <div className="col m9">
-                {list}
+            <div className="col m9 s12">
+                {list.length ? list : <h1>No Results</h1>}
             </div>
         )
     }

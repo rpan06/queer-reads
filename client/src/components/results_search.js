@@ -46,7 +46,7 @@ export default class ResultsSearch extends React.Component {
     }
     render(){
         return (
-            <div className={`${this.props.classes} blue-grey lighten-5`} id="slide-out">
+            <div className={`${this.props.classes} blue-grey lighten-5 results-search`}>
                 <div className="row">
                     <img className="col s12" id="logo" src={logo}/>
                 </div>
