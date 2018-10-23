@@ -74,37 +74,28 @@ export default class LandingPage extends React.Component {
                     </form>
                     <div className="row">
                         <div className="col s12 m8 offset-m2">
-                            <div className="card-panel blue-grey lighten-5" id="advanced-options">
+                            <div id="advanced-options" className="card-panel blue-grey lighten-5">
                                 <div>
                                     <p>Contains character(s) that are:</p>
-                                    <div className="row">
-                                       <Checkbox name="gay" text="Gay" handleChange={this.handleChange}/>
-                                       <Checkbox name="lesbian" text="Lesbian" handleChange={this.handleChange}/>
-                                       <Checkbox hname="bisexual" text="Bisexual" handleChange={this.handleChange}/>
-                                    </div>
-                                    <div className="row">
-                                        <Checkbox name="trans" text="Trans" handleChange={this.handleChange}/>
-                                        <Checkbox name="nonbinary" text="Genderqueer/Non-binary" handleChange={this.handleChange}/>
-                                    </div>
-                                    <div className="row">
-                                        <Checkbox name="intesex" text="Intersex" handleChange={this.handleChange}/>
-                                        <Checkbox name="asexual" text="Asexual" handleChange={this.handleChange}/>
-                                        <Checkbox name="aromantic" text="Aromantic" handleChange={this.handleChange}/>
-                                    </div>
+
+                                       <Checkbox classes="col s4" name="gay" text="Gay" handleChange={this.handleChange}/>
+                                       <Checkbox classes="col s4" name="lesbian" text="Lesbian" handleChange={this.handleChange}/>
+                                       <Checkbox classes="col s4" name="bisexual" text="Bisexual" handleChange={this.handleChange}/>
+
+                                        <Checkbox classes="col s4" name="trans" text="Trans" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s8" name="nonbinary" text="Genderqueer/Non-binary" handleChange={this.handleChange}/>
+
+                                        <Checkbox classes="col s4" name="intesex" text="Intersex" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s4" name="asexual" text="Asexual" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s4" name="aromantic" text="Aromantic" handleChange={this.handleChange}/>
                                 </div>
                                 <div>
                                     <p>LGBTQ+ character(s) are:</p>
-                                    <div className="row">
-                                        <Checkbox name="main" text="Main Character" handleChange={this.handleChange}/>
-                                        <Checkbox name="multiple" text="Multiple Characters" handleChange={this.handleChange}/>
-                                    </div>
-                                    <div className="row">
-                                        <Checkbox name="major" text="Major Characters" handleChange={this.handleChange}/>
-                                        <Checkbox name="minor" text="Minor Characters" handleChange={this.handleChange}/>
-                                    </div>
-                                    <div className="row">
-                                        <Checkbox name="later" text="Later in Series" handleChange={this.handleChange}/>
-                                    </div>
+                                        <Checkbox classes="col s5" name="main" text="Main Character" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s7" name="multiple" text="Multiple Characters" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s6" name="major" text="Major Characters" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s6" name="minor" text="Minor Characters" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s12" name="later" text="Later in Series" handleChange={this.handleChange}/>
                                 </div>
                             </div>
                         </div>
