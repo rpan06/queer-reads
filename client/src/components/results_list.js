@@ -5,18 +5,18 @@ import {getResultsData} from '../actions/index'
 
 class List extends React.Component {
     state = {
-        path: ''
+        pathname: ''
     }
     componentDidMount(){
         this.props.getResultsData(this.props.match.params.filter);
     }
     componentDidUpdate(){
-        if(this.props.location.path === this.state.path){
+        if(this.props.location.pathname === this.state.pathname){
             return
         }
         this.props.getResultsData(this.props.match.params.filter);
         this.setState({
-            path: this.props.location.path
+            pathname: this.props.location.pathname
         })
     }
     filterData(data){
@@ -41,14 +41,13 @@ class List extends React.Component {
                 </div>
             )
         }
-        console.log("Results List Props: ", this.props)
+        // console.log("Results List Props: ", this.props)
         let results = this.filterData(this.props.results.data)
         let list = results.map((item, index)=>{
             return <ResultsCard key={index} item={item}/>
         })
-        console.log(list)
         return (
-            <div className="col m9 s12">
+            <div className="col l9 m12 s12">
                 {list.length ? list : <h1>No Results</h1>}
             </div>
         )

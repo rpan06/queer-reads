@@ -19,7 +19,7 @@ export default class ResultsCard extends React.Component {
                         <Link to={`/book/${ISBN}`}>{title}</Link>
                         <p>by {author}</p><br/>
                         <p className="hide-on-small-only show-on-medium-and-up" dangerouslySetInnerHTML={{__html: shortDescription}}/>
-                        <a className="waves-effect waves-light btn-small white-text modal-trigger hide-on-med-and-up show-on-small" href="#description">Description</a>
+                        <a className="waves-effect waves-light btn-small white-text modal-trigger hide-on-med-and-up show-on-small" id="descriptionButton" href="#description">Description</a>
                         <div id="description" className="modal">
                             <div className="modal-content">
                             {/* <h4>Modal Header</h4> */}
