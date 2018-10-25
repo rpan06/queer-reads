@@ -43,8 +43,8 @@ class BookPage extends React.Component {
         return(
             <div id="bookpage" className="container">
                 <div className="row">
-                    <button className="btn left" onClick={()=>{this.props.history.goBack()}}>Back to Results</button>
-                    <Link className="btn right" to="/">New Search</Link>
+                    <button className="btn left bookpageButton" onClick={()=>{this.props.history.goBack()}}>Back to Results</button>
+                    <Link className="btn right bookpageButton" to="/">New Search</Link>
                     {/* <button data-target="slide-out" className="sidenav-trigger btn right">New Search</button>
                     <Sidenav history={this.props.history}/> */}
                 </div>
@@ -56,7 +56,7 @@ class BookPage extends React.Component {
                 </div>
 
                 <div className="row">
-                    <div className="book-information col l3 center hide-on-small-only show-on-medium-and-up">
+                    <div className="book-information col m3 center hide-on-small-only show-on-medium-and-up">
                         <img src={imageURL}/>
                         <a href={`https://www.goodreads.com/book/isbn/${ISBN}`}>Link to Goodreads</a>
                         <h4>Rating</h4>
@@ -69,7 +69,7 @@ class BookPage extends React.Component {
                         {containsList}
                     </div>
 
-                    <div className="col l9 s12">
+                    <div className="col m9 s12">
                         <h3>{title}</h3>
                         {series === '-' ? '' : <h4>{series}</h4>}
                         <h4>by {author}</h4>

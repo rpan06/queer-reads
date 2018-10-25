@@ -3,6 +3,7 @@ import logo from '../assets/images/landing-page-logo.png'
 import Checkbox from './checkbox'
 import RadioButtons from './radioButtons'
 import convertSearchToBitwise from '../helper/convertSearchToBitwise'
+import {Link} from 'react-router-dom'
 
 export default class LandingPage extends React.Component {
     state = {
@@ -21,6 +22,12 @@ export default class LandingPage extends React.Component {
         major: false,
         minor: false,
         later: false
+    }
+    componentDidMount(){
+        var elems = document.querySelectorAll('.sidenav-overlay');
+        if(elems.length !== 0){
+            elems[0].parentNode.removeChild(elems[0])
+        }
     }
     handleChange = (event) => {
         const target = event.target;
@@ -49,7 +56,7 @@ export default class LandingPage extends React.Component {
         return(
             <div className="center container">
                     <div className="row">
-                        <img className="col s12 m6 offset-m3" src={logo}/>
+                        <Link to="/"><img className="col s12 m6 offset-m3" src={logo}/></Link>
                     </div>
                     <form onSubmit={this.handleSubmit} className="col s12" action="">
                         <div className="row">
@@ -78,23 +85,23 @@ export default class LandingPage extends React.Component {
                                 <div>
                                     <p>Contains character(s) that are:</p>
 
-                                       <Checkbox classes="col s4" name="gay" text="Gay" handleChange={this.handleChange}/>
-                                       <Checkbox classes="col s4" name="lesbian" text="Lesbian" handleChange={this.handleChange}/>
-                                       <Checkbox classes="col s4" name="bisexual" text="Bisexual" handleChange={this.handleChange}/>
+                                       <Checkbox classes="col s4 left-align" name="gay" text="Gay" handleChange={this.handleChange}/>
+                                       <Checkbox classes="col s4 left-align" name="lesbian" text="Lesbian" handleChange={this.handleChange}/>
+                                       <Checkbox classes="col s4 left-align" name="bisexual" text="Bisexual" handleChange={this.handleChange}/>
 
-                                        <Checkbox classes="col s4" name="trans" text="Trans" handleChange={this.handleChange}/>
-                                        <Checkbox classes="col s8" name="nonbinary" text="Genderqueer/Non-binary" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s4 left-align" name="trans" text="Trans" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s8 left-align" name="nonbinary" text="Genderqueer/Non-binary" handleChange={this.handleChange}/>
 
-                                        <Checkbox classes="col s4" name="intesex" text="Intersex" handleChange={this.handleChange}/>
-                                        <Checkbox classes="col s4" name="asexual" text="Asexual" handleChange={this.handleChange}/>
-                                        <Checkbox classes="col s4" name="aromantic" text="Aromantic" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s4 left-align" name="intesex" text="Intersex" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s4 left-align" name="asexual" text="Asexual" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s4 left-align" name="aromantic" text="Aromantic" handleChange={this.handleChange}/>
                                 </div>
                                 <div>
                                     <p>LGBTQ+ character(s) are:</p>
-                                        <Checkbox classes="col s5" name="main" text="Main Character" handleChange={this.handleChange}/>
-                                        <Checkbox classes="col s7" name="multiple" text="Multiple Characters" handleChange={this.handleChange}/>
-                                        <Checkbox classes="col s6" name="major" text="Major Characters" handleChange={this.handleChange}/>
-                                        <Checkbox classes="col s6" name="minor" text="Minor Characters" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s6 left-align" name="main" text="Main Character" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s6 left-align" name="multiple" text="Multiple Characters" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s6 left-align" name="major" text="Major Characters" handleChange={this.handleChange}/>
+                                        <Checkbox classes="col s6 left-align" name="minor" text="Minor Characters" handleChange={this.handleChange}/>
                                         <Checkbox classes="col s12" name="later" text="Later in Series" handleChange={this.handleChange}/>
                                 </div>
                             </div>
