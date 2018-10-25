@@ -11,6 +11,11 @@ html, body{
     margin:1vh
 }
 
+[type="radio"]:not(:checked)+span, [type="radio"]:checked+span{
+    padding-right: 20px !important;
+    padding-left: 28px !important;
+}
+
 #advanced-options{
     padding: 1rem 1rem 10rem 1rem;
 }
@@ -36,11 +41,6 @@ html, body{
 .card {
     margin: 5vh;
 }
-
-/* .card, .card-image img{
-    height: 22rem;
-    width: auto;
-} */
 
 .card a {
     color: black;
