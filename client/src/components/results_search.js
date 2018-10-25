@@ -3,7 +3,7 @@ import logo from '../assets/images/landing-page-logo.png';
 import Checkbox from './checkbox';
 import RadioButtons from './radioButtons';
 import convertSearchToBitwise from '../helper/convertSearchToBitwise'
-
+import {Link} from 'react-router-dom'
 
 export default class ResultsSearch extends React.Component {
     state = {
@@ -42,13 +42,16 @@ export default class ResultsSearch extends React.Component {
         if(searchType === ''){
             searchType = 'all'
         }
+        if(this.props.closeModal){
+            this.props.closeModal();
+        }
         this.props.history.push(`/search/${searchCharPresence}/${searchType}/${search}`);
     }
     render(){
         return (
             <div className={`${this.props.classes} blue-grey lighten-5 results-search`}>
                 <div className="row">
-                    <img className="col s12" id="logo" src={logo}/>
+                    <Link to="/"><img className="col s12" id="logo" src={logo}/></Link>
                 </div>
                 <form onSubmit={this.handleSubmit} className="center" action="">
                     <input

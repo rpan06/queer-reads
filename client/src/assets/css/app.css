@@ -11,6 +11,11 @@ html, body{
     margin:1vh
 }
 
+[type="radio"]:not(:checked)+span, [type="radio"]:checked+span{
+    padding-right: 20px !important;
+    padding-left: 28px !important;
+}
+
 #advanced-options{
     padding: 1rem 1rem 10rem 1rem;
 }
@@ -35,11 +40,6 @@ html, body{
 
 .card {
     margin: 5vh;
-}
-
-.card, .card-image img{
-    height: 30vh;
-    width: auto;
 }
 
 .card a {
@@ -120,3 +120,56 @@ html, body{
               transform: rotate(359deg);
     }
   }
+
+  @media only screen
+  and (max-device-width: 401px) {
+    .container #advanced-options label span{
+        font-size: 11px !important;
+    }
+    .container #advanced-options label {
+        padding: 0 0 1rem 0;
+    }
+    .card, .card-image img{
+        max-width: none !important;
+        height: 10em;
+        width: auto;
+    }
+    #descriptionButton{
+        display: none !important;
+    }
+    .bookpageButton {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+  }
+
+
+  @media only screen
+  and (min-device-width: 402px)
+  and (max-device-width: 601px) {
+    .card, .card-image img{
+        height: 15em;
+        width: auto;
+    }
+  }
+
+
+  @media only screen
+  and (min-device-width: 602px)
+  and (max-device-width: 992px) {
+    .card, .card-image img{
+        height: 20em;
+        width: auto;
+    }
+  }
+
+  @media only screen
+  and (min-device-width: 993px) {
+    .card, .card-image img{
+        height: 15em;
+        width: auto;
+    }
+  }
+  /* iphone 4 (320), galaxy s5(360), image is squished
+   */
