@@ -12,7 +12,7 @@ export default class ResultsCard extends React.Component {
         return (
             <div className="card horizontal brown lighten-5">
                 <div className="card-image">
-                    <img src={imageURL}/>
+                <img onClick={()=>{this.props.history.push(`/book/${ISBN}`)}} src={imageURL}/>
                 </div>
                 <div className="card-stacked">
                     <div className="card-content">
