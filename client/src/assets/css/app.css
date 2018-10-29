@@ -171,5 +171,11 @@ html, body{
         width: auto;
     }
   }
-  /* iphone 4 (320), galaxy s5(360), image is squished
-   */
+
+  @media only screen
+  and (min-device-width: 1400px) {
+        .col.s12.m8.offset-m2{
+            width: 50%;
+            margin-left: 25%;
+        }
+  }
