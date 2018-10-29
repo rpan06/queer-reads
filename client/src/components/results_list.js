@@ -44,7 +44,7 @@ class List extends React.Component {
         // console.log("Results List Props: ", this.props)
         let results = this.filterData(this.props.results.data)
         let list = results.map((item, index)=>{
-            return <ResultsCard key={index} item={item}/>
+            return <ResultsCard key={index} item={item} history={this.props.history}/>
         })
         return (
             <div className="col l9 m12 s12">
