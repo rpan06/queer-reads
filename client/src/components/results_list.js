@@ -1,7 +1,8 @@
 import React from 'react';
 import ResultsCard from './results_card';
+import LoadingSpinner from './loading_spinner'
 import { connect } from 'react-redux';
-import {getResultsData} from '../actions/index'
+import {getResultsData, clearResults} from '../actions/index'
 
 class List extends React.Component {
     state = {
@@ -14,6 +15,7 @@ class List extends React.Component {
         if(this.props.location.pathname === this.state.pathname){
             return
         }
+        this.props.clearResults();
         this.props.getResultsData(this.props.match.params.filter);
         this.setState({
             pathname: this.props.location.pathname
@@ -36,9 +38,7 @@ class List extends React.Component {
     render(){
         if(typeof this.props.results.data === 'undefined'){
             return(
-                <div className="loading-container">
-                    <span className="loading-spinner"></span>
-                </div>
+                <LoadingSpinner/>
             )
         }
         // console.log("Results List Props: ", this.props)
@@ -61,4 +61,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {getResultsData})(List)
+export default connect(mapStateToProps, {getResultsData, clearResults})(List)

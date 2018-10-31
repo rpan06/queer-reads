@@ -1,5 +1,6 @@
 import React from 'react';
 import BookPageInfoModal from './book_page_info_modal'
+import LoadingSpinner from './loading_spinner'
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {getSingleItem, clearSingleItem} from '../actions'
@@ -31,20 +32,18 @@ class BookPage extends React.Component {
     render(){
         if(typeof this.props.item.data === 'undefined'){
             return(
-                <div className="loading-container">
-                    <span className="loading-spinner"></span>
-                </div>
+                <LoadingSpinner/>
             )
         }
-        console.log("Bookpage Props: ", this.props)
+        // console.log("Bookpage Props: ", this.props)
         const {ISBN, imageURL, title, series, author, rating, format, genre, longDescription, characterPresence} = this.props.item.data[0];
         const arrayOfCharacters = this.convertToBinaryAndThenCharacters(parseInt(characterPresence))
         const containsList = arrayOfCharacters.map((item,index)=><p key={index}>{item}</p>)
         return(
             <div id="bookpage" className="container">
                 <div className="row">
-                    <button className="btn left bookpageButton" onClick={()=>{this.props.history.goBack()}}>Back to Results</button>
-                    <Link className="btn right bookpageButton" to="/">New Search</Link>
+                    <button className="btn waves-effect waves-light left bookpageButton" onClick={()=>{this.props.history.goBack()}}>Back to Results</button>
+                    <Link className="btn waves-effect waves-light right bookpageButton" to="/">New Search</Link>
                     {/* <button data-target="slide-out" className="sidenav-trigger btn right">New Search</button>
                     <Sidenav history={this.props.history}/> */}
                 </div>

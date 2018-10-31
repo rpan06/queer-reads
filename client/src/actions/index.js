@@ -1,9 +1,6 @@
 import types from './types';
 import axios from 'axios';
 
-import singleData from '../dummy_data/dummyDataSingle'
-import resultsData from '../dummy_data/dummyDataResults'
-
 export function getResultsData(filter){  //async and await unnecessary with redux-promise. it is handled
     const resp = axios.get(`/api/search/${filter}`);
     // const resp = resultsData;
@@ -25,5 +22,11 @@ export function getSingleItem(ISBN){
 export function clearSingleItem(){
     return{
         type: types.CLEAR_SINGLE_ITEM
+    }
+}
+
+export function clearResults(){
+    return{
+        type: types.CLEAR_RESULTS
     }
 }
