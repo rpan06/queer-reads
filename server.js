@@ -47,7 +47,7 @@ app.get('/add-data', async (req,res)=> {
     console.log(sql)
     let query = db.query(sql, (err,result) => {
         if(err) console.log(err);
-        // console.log(result);
+        console.log(result);
         res.send(result)
     })
 })
@@ -67,18 +67,18 @@ app.get('/api/book/:ISBN', (req,res) => {
     let sql = `SELECT * FROM books WHERE ISBN = '${req.params.ISBN}'`;
     let query = db.query(sql, (err, results) => {
         if(err) throw err;
-        console.log(results);
+        console.log('Data fetched...');
         res.send(results)
     })
 })
 
 //TODO: @closeness := 0; SELECT name, author, @closeness:=characterPresence&userFilter FROM books WHERE @closeness > 0 ORDER BY @closeness DESC
 app.get('/api/search/:filter', (req,res) => {
-    console.log("API SHITT", req.params)
+    // console.log("API SHITT", req.params)
     let sql = `SELECT * FROM books WHERE characterPresence & ${req.params.filter} = ${req.params.filter}`;
     let query = db.query(sql, (err, results) => {
         if(err) throw err;
-        console.log(results);
+        console.log('Data fetched...');
         res.send(results)
     })
 })
@@ -151,7 +151,6 @@ async function createBookObject(arrayInformation){
     return book;
 }
 
-//TODO: fix this for UUID
 function generateID(){
     return Math.floor(Math.random() * 1000)
 }

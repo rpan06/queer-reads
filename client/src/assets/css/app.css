@@ -47,82 +47,40 @@ html, body{
     font-size: 1.5em;
 }
 
+.card-image img{
+    cursor: pointer;
+}
+
 .book-information img {
     width: 100%;
     height: auto
 }
 
+.preloader-wrapper{
+    left: 45%;
+    margin-top: 10%;
+}
 
-/* From Carlos Moreira on codepen.io */
-.loading-container {
-    position: absolute;
-    top: 0;
+#back-to-top {
+    margin: 2%;
+    position: fixed !important;
     bottom: 0;
     left: 0;
-    right: 0;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-.loading-spinner {
-    border: 5px solid #4CAF50;
-    border-top: 5px solid transparent;
-    display: block;
-    padding: 15px;
-    border-radius: 25px;
-    -webkit-animation: rotation 1s linear infinite;
-            animation: rotation 1s linear infinite;
-  }
+    display: none;
+    /* opacity: 0; */
+    /* transition: opacity 500ms ease-in-out; */
+}
 
-  @-webkit-keyframes rotation {
-    0% {
-      border-color: #F44336;
-      border-top-color: transparent;
-      -webkit-transform: rotate(0deg);
-              transform: rotate(0deg);
+@media only screen
+and (max-device-width: 401px) {
+    [type="radio"]:not(:checked)+span, [type="radio"]:checked+span{
+        padding-right: 15px !important;
+        padding-left: 25px !important;
     }
-    25% {
-      border-color: #4CAF50;
-      border-top-color: transparent;
+    .sidenav {
+        height: 100% !important;
+        width: 75% !important;
     }
-    50% {
-      border-color: #2196F3;
-      border-top-color: transparent;
-    }
-    100% {
-      border-color: #F44336;
-      border-top-color: transparent;
-      -webkit-transform: rotate(359deg);
-              transform: rotate(359deg);
-    }
-  }
-
-  @keyframes rotation {
-    0% {
-      border-color: #F44336;
-      border-top-color: transparent;
-      -webkit-transform: rotate(0deg);
-              transform: rotate(0deg);
-    }
-    25% {
-      border-color: #4CAF50;
-      border-top-color: transparent;
-    }
-    50% {
-      border-color: #2196F3;
-      border-top-color: transparent;
-    }
-    100% {
-      border-color: #F44336;
-      border-top-color: transparent;
-      -webkit-transform: rotate(359deg);
-              transform: rotate(359deg);
-    }
-  }
-
-  @media only screen
-  and (max-device-width: 401px) {
     .container #advanced-options label span{
         font-size: 11px !important;
     }
@@ -142,40 +100,51 @@ html, body{
         margin-left: auto;
         margin-right: auto;
     }
-  }
+}
 
 
-  @media only screen
-  and (min-device-width: 402px)
-  and (max-device-width: 601px) {
+@media only screen
+and (min-device-width: 402px)
+and (max-device-width: 601px) {
     .card, .card-image img{
         height: 15em;
         width: auto;
     }
-  }
+}
 
 
-  @media only screen
-  and (min-device-width: 602px)
-  and (max-device-width: 992px) {
+@media only screen
+and (min-device-width: 602px)
+and (max-device-width: 992px) {
     .card, .card-image img{
         height: 20em;
         width: auto;
     }
-  }
+}
 
-  @media only screen
-  and (min-device-width: 993px) {
+@media only screen
+and (min-device-width: 993px) {
     .card, .card-image img{
         height: 15em;
         width: auto;
     }
-  }
+    .preloader-wrapper{
+        left: 35%;
+        margin-top: 10%;
+    }
+}
 
-  @media only screen
-  and (min-device-width: 1400px) {
-        .col.s12.m8.offset-m2{
-            width: 50%;
-            margin-left: 25%;
-        }
-  }
+@media only screen
+and (min-device-width: 1400px) {
+    .col.s12.m8.offset-m2{
+        width: 50%;
+        margin-left: 25%;
+    }
+}
+
+@media only screen
+and (orientation: landscape){
+    .sidenav {
+        height: 100% !important;
+    }
+}

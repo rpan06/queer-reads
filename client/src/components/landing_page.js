@@ -77,7 +77,7 @@ export default class LandingPage extends React.Component {
                             <RadioButtons value="title" handleChange={this.handleChange}/>
                             <RadioButtons value="author" handleChange={this.handleChange}/>
                         </div>
-                        <button className="btn">Find Books!</button>
+                        <button className="btn waves-effect waves-light">Find Books!</button>
                     </form>
                     <div className="row">
                         <div className="col s12 m8 offset-m2">

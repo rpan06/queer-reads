@@ -67,7 +67,7 @@ export default class ResultsSearch extends React.Component {
                         <RadioButtons value="title" handleChange={this.handleChange}/>
                         <RadioButtons value="author" handleChange={this.handleChange}/>
                     </div>
-                    <button className="btn" id="search-submit">Find Books!</button>
+                    <button className="btn waves-effect waves-light" id="search-submit">Find Books!</button>
                 </form>
                 <div>
                     <p>Contains character(s) that are:</p>
