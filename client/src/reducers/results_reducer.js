@@ -13,6 +13,8 @@ export default function(state = DEFAULT_STATE, action){
             return {...state, single: action.payload};
         case types.GET_RESULTS_DATA:
             return {...state, results: action.payload};
+        case types.CLEAR_RESULTS:
+            return {...state, results: []}
         default:
             return state;
     }
