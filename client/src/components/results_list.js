@@ -21,6 +21,9 @@ class List extends React.Component {
             pathname: this.props.location.pathname
         })
     }
+    componentWillUnmount(){
+        this.props.clearResults();
+    }
     filterData(data){
         let {text, type} = this.props.match.params;
         if(text === '0'){
