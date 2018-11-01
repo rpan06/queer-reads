@@ -71,8 +71,7 @@ html, body{
     /* transition: opacity 500ms ease-in-out; */
 }
 
-@media only screen
-and (max-device-width: 401px) {
+@media (max-width: 401px) {
     [type="radio"]:not(:checked)+span, [type="radio"]:checked+span{
         padding-right: 15px !important;
         padding-left: 25px !important;
@@ -103,9 +102,8 @@ and (max-device-width: 401px) {
 }
 
 
-@media only screen
-and (min-device-width: 402px)
-and (max-device-width: 601px) {
+@media (min-width: 402px)
+and (max-width: 601px) {
     .card, .card-image img{
         height: 15em;
         width: auto;
@@ -113,17 +111,15 @@ and (max-device-width: 601px) {
 }
 
 
-@media only screen
-and (min-device-width: 602px)
-and (max-device-width: 992px) {
+@media (min-width: 602px)
+and (max-width: 992px) {
     .card, .card-image img{
         height: 20em;
         width: auto;
     }
 }
 
-@media only screen
-and (min-device-width: 993px) {
+@media (min-width: 993px) {
     .card, .card-image img{
         height: 15em;
         width: auto;
@@ -134,8 +130,7 @@ and (min-device-width: 993px) {
     }
 }
 
-@media only screen
-and (min-device-width: 1400px) {
+@media (min-width: 1400px) {
     .col.s12.m8.offset-m2{
         width: 50%;
         margin-left: 25%;
