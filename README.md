@@ -25,7 +25,7 @@ Queer Reads lets you search through a database of books using either the search 
 > 1. Open a browser and navigate to `localhost:9000`
 
 
-## Meta
+## Author
 
 Rachel Pan - rpan06@gmail.com
 
