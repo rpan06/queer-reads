@@ -86,6 +86,9 @@ html, body{
     .container #advanced-options label {
         padding: 0 0 1rem 0;
     }
+    .card a {
+        font-size: 1.3em;
+    }
     .card, .card-image img{
         max-width: none !important;
         height: 10em;
