@@ -75,7 +75,7 @@ app.get('/api/book/:ISBN', (req,res) => {
 //TODO: @closeness := 0; SELECT name, author, @closeness:=characterPresence&userFilter FROM books WHERE @closeness > 0 ORDER BY @closeness DESC
 app.get('/api/search/:filter', (req,res) => {
     // console.log("API SHITT", req.params)
-    let sql = `SELECT * FROM books WHERE characterPresence & ${req.params.filter} = ${req.params.filter}`;
+    let sql = `SELECT ISBN, title, author, rating, shortDescription, imageURL FROM books WHERE characterPresence & ${req.params.filter} = ${req.params.filter} ORDER BY rating DESC`;
     let query = db.query(sql, (err, results) => {
         if(err) throw err;
         console.log('Data fetched...');
@@ -83,7 +83,8 @@ app.get('/api/search/:filter', (req,res) => {
     })
 })
 
-app.get('/get-all-data', (req,res) => {
+
+app.get('/api/get-all-data', (req,res) => {
     let sql = `SELECT * FROM books`;
     let query = db.query(sql, (err, results) => {
         if(err) throw err;
@@ -91,7 +92,6 @@ app.get('/get-all-data', (req,res) => {
         res.send(results)
     })
 })
-
 
 
 app.get('*',(req,res)=>{
@@ -169,7 +169,6 @@ function getCharPresence(characterArray) {
 async function goodreadsAxiosCall(isbn){
     const response = await axios.get(`https://www.goodreads.com/book/isbn/${isbn}`)
     return scrapeWebData(response.data, isbn)
-
 }
 
 function scrapeWebData(data, isbn){
