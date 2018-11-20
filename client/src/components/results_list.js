@@ -10,6 +10,8 @@ class List extends React.Component {
     }
     componentDidMount(){
         this.props.getResultsData(this.props.match.params.filter);
+        // var elems = document.querySelectorAll('.dropdown-trigger');
+        // var instances = M.Dropdown.init(elems);
     }
     componentDidUpdate(){
         if(this.props.location.pathname === this.state.pathname){
@@ -51,6 +53,15 @@ class List extends React.Component {
         })
         return (
             <div className="col l9 m12 s12">
+                {/* <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li><a href="#!">one</a></li>
+                    <li><a href="#!">two</a></li>
+                    <li class="divider" tabindex="-1"></li>
+                    <li><a href="#!">three</a></li>
+                    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                </ul> */}
                 {list.length ? list : <h1>No Results</h1>}
             </div>
         )
