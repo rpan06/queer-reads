@@ -88,6 +88,7 @@ html, body{
     }
     .card a {
         font-size: 1.3em;
+        line-height: 0px !important;
     }
     .card, .card-image img{
         max-width: none !important;
