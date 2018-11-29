@@ -5,9 +5,10 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {getSingleItem, clearSingleItem} from '../actions'
 import Sidenav from './sidenav'
+import '../assets/css/goodreads-widget.css';
 
 import ResultsSearch from './results_search';
-
+import axios from 'axios';
 
 class BookPage extends React.Component {
     componentDidMount(){
@@ -26,8 +27,8 @@ class BookPage extends React.Component {
             if (parseInt(binary[index])){ //binary[index] === '1'
             output.push(characterArray[index])
             }
-        }
-        return output
+        };
+        return output;
     }
     render(){
         if(typeof this.props.item.data === 'undefined'){
@@ -74,6 +75,13 @@ class BookPage extends React.Component {
                         <h4>by {author}</h4>
                         <br/>
                         <p dangerouslySetInnerHTML={{__html: longDescription}}/>
+                        <div id="goodreads-widget" className="col s12">
+                            <div id="gr_header"><h1><a rel="nofollow" href={`https://www.goodreads.com/book/isbn/${ISBN}`}>{title} Reviews</a></h1></div>
+                            <iframe id="the_iframe" src={`https://www.goodreads.com/api/reviews_widget_iframe?format=html&isbn=${ISBN}&links=660&review_back=fff&stars=000&text=000`} className="col s12" height="400" frameBorder="0"></iframe>
+                            <div id="gr_footer">
+                                <a className="gr_branding" target="_blank" rel="nofollow" href={`https://www.goodreads.com/book/isbn/${ISBN}?utm_medium=api&utm_source=reviews_widget`}>Reviews from Goodreads.com</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
